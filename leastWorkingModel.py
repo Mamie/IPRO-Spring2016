@@ -7,7 +7,7 @@ def printHelpText():
 #End Function printHelpText()
 
 cap = cv2.VideoCapture(0)
-cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
+cv2.namedWindow('Ball And Stick Tracker',cv2.WINDOW_AUTOSIZE)
 
 printHelpText()
 
@@ -24,7 +24,7 @@ while not quit:
 			retval,image = cap.read()
 			cv2.imshow('Ball And Stick Tracker', image)
 			key = cv2.waitKey(5)
-	#End If	
+	#End If
 
 	currentImage = cv2.medianBlur(image,5)
 	while True:

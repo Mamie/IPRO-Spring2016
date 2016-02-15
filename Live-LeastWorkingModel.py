@@ -7,7 +7,7 @@ def printHelpText():
 	print 'Welcome to our Least Working Program for IPRO 207 in Spring 2016'
 #End Function printHelpText()
 
-def distance3D(x,y):	
+def distance3D(x,y):
 	return ((1.0*x[0]-y[0])**2+(1.0*x[1]-y[1])**2+(1.0*x[2]-y[2])**2)**(0.5)
 #End Function distance()
 def distance2D(x,y):
@@ -41,7 +41,7 @@ def nearestNeighbor(colors, pixel):
 		d=distance3D(pixel, c)
 		if dist==-1 or d<dist:
 			dist = d
-			index = i 
+			index = i
 		i=i+1
 	return index
 #End Function nearestNeighbor()
@@ -85,7 +85,7 @@ def DFS(graph, vertexNames):
 #End Function DFS(graph, vertexNames)
 
 cap = cv2.VideoCapture(0)
-cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
+cv2.namedWindow('Ball And Stick Tracker',cv2.WINDOW_AUTOSIZE)
 
 
 printHelpText()
@@ -104,7 +104,7 @@ while not quit:
 		image = cv2.medianBlur(image,3)
 		cimg = image.copy()
 		img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-		circles = cv2.HoughCircles(img,cv2.cv.CV_HOUGH_GRADIENT,1,30,
+		circles = cv2.HoughCircles(img,cv2.HOUGH_GRADIENT,1,30,
                        			    param1=45,param2=25,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
@@ -125,7 +125,7 @@ while not quit:
 				cv2.circle(cimg,(i[0],i[1]),i[2],(0,255,0),2)
 				# draw the center of the circle
 				cv2.circle(cimg,(i[0],i[1]),2,(0,0,255),3)
-				cv2.putText(cimg, colorNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)			
+				cv2.putText(cimg, colorNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)
 			#End for
 
 			#Mark Connections
@@ -152,7 +152,7 @@ while not quit:
 		cv2.imshow('Ball And Stick Tracker', cimg)
 		key = cv2.waitKey(200)
 		if key==-1: continue
-		if chr(key)=='q': 
+		if chr(key)=='q':
 			quit=True
 			break
 		elif chr(key)=='s':
