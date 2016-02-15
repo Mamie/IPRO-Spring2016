@@ -28,7 +28,7 @@ def MOL( SMILES ):
 # display the 3D model in pymol
 def pymol_show( infile ):
     os.system( 'pymol -ex "%s"' %infile )
-    #os.remove( infile )
+    os.remove( infile )
 
 # unit testing; python query.py SMILES_string
 if __name__=='__main__':
