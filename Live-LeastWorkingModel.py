@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import sys
 import math
+import cirpy
+import Visualization.query as query
 
 def printHelpText():
 	print 'Welcome to our Least Working Program for IPRO 207 in Spring 2016'
@@ -105,10 +107,10 @@ while not quit:
 		cimg = image.copy()
 		img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 		circles = cv2.HoughCircles(img,cv2.HOUGH_GRADIENT,1,30,
-                       			    param1=45,param2=25,minRadius=15,maxRadius=50)
+                       			    param1=50,param2=35,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'N']
+			atomNames = ['C', 'O', 'C']
 			colorNames = ['Black', 'Red', 'Blue']
 			color = [[45,45,45], [130,160,240], [255,240,180]]#[[45,45,45], [50,55,90], [105,75,60]]
 			count = [0,0,0]
@@ -162,6 +164,19 @@ while not quit:
 			smile = DFS(graph, vertexNames)
 			print smile
 			print ''
+			if smile==None:
+				continue
+			molfile = query.MOL( smile )
+			if not molfile == None:
+				name = query.iupac( smile )
+				filename = name + '.mol' if not name==None else smile+'.mol'
+				print molfile
+				with open( filename, 'w') as infile:
+					infile.write( molfile )
+					quit=True
+				
+				query.pymol_show( filename )
+				break	
 		elif chr(key)=='p':
 			break
 		#End While

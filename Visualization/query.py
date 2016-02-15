@@ -28,7 +28,7 @@ def MOL( SMILES ):
 # display the 3D model in pymol
 def pymol_show( infile ):
     os.system( 'pymol -ex "%s"' %infile )
-    os.remove( infile )
+    #os.remove( infile )
 
 # unit testing; python query.py SMILES_string
 if __name__=='__main__':
@@ -39,9 +39,10 @@ if __name__=='__main__':
     if not molfile == None:
         name = iupac( args.SMILES )
         filename = name + '.mol' if not name==None else args.SMILES+'.mol'
-        with open( filename, 'w+' ) as infile:
-            infile.write( molfile )
-        pymol_show( filename )
+        print molfile
+        #with open( filename, 'w+' ) as infile:
+        #    infile.write( molfile )
+        #pymol_show( filename )
     else:
         print 'SMILES string cannot be resolved'
 
