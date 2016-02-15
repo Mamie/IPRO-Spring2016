@@ -76,8 +76,8 @@ def DFS(graph, vertexNames):
 	while not len(stack)==0:
 		cur = stack.pop()
 		if seen[cur]: continue
-		print cur
 		seen[cur]=True
+		ret = ret+vertexNames[cur]
 		for i in range(len(graph)):
 			if i in graph[cur] and not seen[i]:
 				stack.append(i)
@@ -150,7 +150,7 @@ while not quit:
 		#End If
 
 		cv2.imshow('Ball And Stick Tracker', cimg)
-		key = cv2.waitKey(200)
+		key = cv2.waitKey(20)
 		if key==-1: continue
 		if chr(key)=='q': 
 			quit=True
