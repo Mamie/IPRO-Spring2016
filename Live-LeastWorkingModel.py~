@@ -64,7 +64,7 @@ def detectSingleBond(image, c1, c2):
 	return count>THRESHOLD
 #End Function detectSingleBond()
 
-EDGE_REMOVAL_COUNTER=1
+EDGE_REMOVAL_COUNTER=0
 def DFS(graph, vertexNames):
 	global EDGE_REMOVAL_COUNTER
 	if graph==None or graph==[]: return None
