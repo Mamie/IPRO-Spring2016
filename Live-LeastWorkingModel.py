@@ -61,7 +61,7 @@ def detectSingleBond(image, c1, c2):
 	for i in range(STEPS):
 		step = direction*i/STEPS
 		test = p1 + step
-		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [240,250,240]))<75:
+		if abs(distance3D(image[int(math.floor(test[1]))][int(math.floor(test[0]))], [240,250,240]))<75:
 			count = count+1
 	return count>THRESHOLD
 #End Function detectSingleBond()
@@ -174,9 +174,9 @@ while not quit:
 				with open( filename, 'w') as infile:
 					infile.write( molfile )
 					quit=True
-				
+
 				query.pymol_show( filename )
-				break	
+				break
 		elif chr(key)=='p':
 			break
 		#End While
