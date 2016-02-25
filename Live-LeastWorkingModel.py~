@@ -2,14 +2,12 @@ import cv2
 import numpy as np
 import sys
 import math
-import cirpy
-import Visualization.query as query
 
 def printHelpText():
 	print 'Welcome to our Least Working Program for IPRO 207 in Spring 2016'
 #End Function printHelpText()
 
-def distance3D(x,y):
+def distance3D(x,y):	
 	return ((1.0*x[0]-y[0])**2+(1.0*x[1]-y[1])**2+(1.0*x[2]-y[2])**2)**(0.5)
 #End Function distance()
 def distance2D(x,y):
@@ -43,7 +41,7 @@ def nearestNeighbor(colors, pixel):
 		d=distance3D(pixel, c)
 		if dist==-1 or d<dist:
 			dist = d
-			index = i
+			index = i 
 		i=i+1
 	return index
 #End Function nearestNeighbor()
@@ -61,12 +59,12 @@ def detectSingleBond(image, c1, c2):
 	for i in range(STEPS):
 		step = direction*i/STEPS
 		test = p1 + step
-		if abs(distance3D(image[int(math.floor(test[1]))][int(math.floor(test[0]))], [240,250,240]))<75:
+		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [240,250,240]))<75:
 			count = count+1
 	return count>THRESHOLD
 #End Function detectSingleBond()
 
-EDGE_REMOVAL_COUNTER=1
+EDGE_REMOVAL_COUNTER=0
 def DFS(graph, vertexNames):
 	global EDGE_REMOVAL_COUNTER
 	if graph==None or graph==[]: return None
@@ -126,7 +124,7 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
 cap = cv2.VideoCapture(0)
-cv2.namedWindow('Ball And Stick Tracker',cv2.WINDOW_AUTOSIZE)
+cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 
 printHelpText()
@@ -145,11 +143,11 @@ while not quit:
 		image = cv2.medianBlur(image,3)
 		cimg = image.copy()
 		img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-		circles = cv2.HoughCircles(img,cv2.HOUGH_GRADIENT,1,30,
-                       			    param1=50,param2=35,minRadius=15,maxRadius=50)
+		circles = cv2.HoughCircles(img,cv2.cv.CV_HOUGH_GRADIENT,1,30,
+                       			    param1=45,param2=25,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'C']
+			atomNames = ['C', 'O', 'N']
 			colorNames = ['Black', 'Red', 'Blue']
 			color = [[45,45,45], [130,160,240], [255,240,180]]#[[45,45,45], [50,55,90], [105,75,60]]
 			count = [0,0,0]
@@ -166,7 +164,7 @@ while not quit:
 				cv2.circle(cimg,(i[0],i[1]),i[2],(0,255,0),2)
 				# draw the center of the circle
 				cv2.circle(cimg,(i[0],i[1]),2,(0,0,255),3)
-				cv2.putText(cimg, colorNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)
+				cv2.putText(cimg, colorNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)			
 			#End for
 
 			#Mark Connections
@@ -193,7 +191,7 @@ while not quit:
 		cv2.imshow('Ball And Stick Tracker', cimg)
 		key = cv2.waitKey(20)
 		if key==-1: continue
-		if chr(key)=='q':
+		if chr(key)=='q': 
 			quit=True
 			break
 		elif chr(key)=='s':
@@ -203,19 +201,6 @@ while not quit:
 			smile = DFS(graph, vertexNames)
 			print smile
 			print ''
-			if smile==None:
-				continue
-			molfile = query.MOL( smile )
-			if not molfile == None:
-				name = query.iupac( smile )
-				filename = name + '.mol' if not name==None else smile+'.mol'
-				print molfile
-				with open( filename, 'w') as infile:
-					infile.write( molfile )
-					quit=True
-
-				query.pymol_show( filename )
-				break
 		elif chr(key)=='p':
 			break
 		#End While
