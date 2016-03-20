@@ -78,7 +78,7 @@ def DFS(graph, vertexNames):
 	EDGE_REMOVAL_COUNTER=0
 	removeCycles(graph,vertexNames,seen,start,None)
 	ret=''
-	seen = [False]*len(graph)	
+	seen = [False]*len(graph)
 	return recursiveDFS(graph, vertexNames, seen, start, None)
 #End Function DFS(graph, vertexNames)
 
@@ -149,10 +149,10 @@ while not quit:
                        			    param1=50,param2=35,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'C']
-			colorNames = ['Black', 'Red', 'Blue']
-			color = [[45,45,45], [130,160,240], [255,240,180]]#[[45,45,45], [50,55,90], [105,75,60]]
-			count = [0,0,0]
+			atomNames = ['C', 'O', 'C', 'Cl']
+			colorNames = ['Black', 'Red', 'Blue', 'Green']
+			color = [[45,45,45], [130,160,240], [255,240,180], [54, 163, 38]]#[[45,45,45], [50,55,90], [105,75,60]]
+			count = [0,0,0,0]
 
 			vertexNames = []
 			graph = []
