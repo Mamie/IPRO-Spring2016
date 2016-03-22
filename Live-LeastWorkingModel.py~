@@ -51,20 +51,22 @@ def detectSingleBond(image, c1, c2):
 	if distance>5*c1[2] or distance>5*c2[2]: return False
 	STEPS =25
 	PERCENT_SKIP=0.3
-	THRESHOLD=0.90
+	THRESHOLD=0.85
 	p1 = c1*PERCENT_SKIP + c2*(1-PERCENT_SKIP)
 	p2 = c2*PERCENT_SKIP + c1*(1-PERCENT_SKIP)
 	direction = p2-p1
 	count=0
+	print 'STARTINGS'
 	for i in range(STEPS):
 		step = direction*i/STEPS
 		test = p1 + step
-		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [240,250,240]))<75:
+		print image[math.floor(test[1])][math.floor(test[0])]
+		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [185,135,135]))<45:
 			count = count+1
 	return count>THRESHOLD
 #End Function detectSingleBond()
 
-EDGE_REMOVAL_COUNTER=0
+EDGE_REMOVAL_COUNTER=1
 def DFS(graph, vertexNames):
 	global EDGE_REMOVAL_COUNTER
 	if graph==None or graph==[]: return None
@@ -123,13 +125,13 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 	return ret
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 
 printHelpText()
 
-
+COUNTER=25
 quit=False
 while not quit:
 	retval,image = cap.read()
@@ -147,10 +149,10 @@ while not quit:
                        			    param1=45,param2=25,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'N']
-			colorNames = ['Black', 'Red', 'Blue']
-			color = [[45,45,45], [130,160,240], [255,240,180]]#[[45,45,45], [50,55,90], [105,75,60]]
-			count = [0,0,0]
+			atomNames = ['C', 'O', 'N','P','H']
+			colorNames = ['Black', 'Red', 'Blue','Purple','White']
+			color = [[34,27,25], [70,25,155], [210,125,75], [165,80,95], [245,175,185]]
+			count = [0,0,0,0,0]
 
 			vertexNames = []
 			graph = []
@@ -189,7 +191,7 @@ while not quit:
 		#End If
 
 		cv2.imshow('Ball And Stick Tracker', cimg)
-		key = cv2.waitKey(20)
+		key = cv2.waitKey(200)
 		if key==-1: continue
 		if chr(key)=='q': 
 			quit=True
@@ -201,6 +203,9 @@ while not quit:
 			smile = DFS(graph, vertexNames)
 			print smile
 			print ''
+		elif chr(key)=='x':
+			cv2.imwrite("out"+str(COUNTER)+".jpg",image)
+			COUNTER=COUNTER+1
 		elif chr(key)=='p':
 			break
 		#End While
