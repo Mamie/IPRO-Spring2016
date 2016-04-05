@@ -2,11 +2,8 @@
 	<div ng-show="!quizOver">
 		<div class="col-xs-7">
 			<h4 id="question">{{question}}</h4>
-		</div>
-		<div class="col-xs-5">
-		</div>
-		<div class="col-xs-7" ng-switch="type">
-			<div ng-switch-when="0">
+			
+			<div ng-show="type==0">
 				<ul id="options">
 					<li ng-repeat="option in options">
 						<label>
@@ -16,11 +13,13 @@
 					</li>
 				</ul>
 			</div>
-			<div ng-switch-when="1">
+			
+			<div ng-show="type==1">
 				<textarea ng-model="string" class="form-control" rows=2 name="answer" placeholder="IUPAC name"></textarea>
 				<br>
-			</div>			
-			<div ng-switch-when="3">
+			</div>
+			
+			<div ng-show="type==3">
 			<br>
 			<br>
 			</div>
@@ -36,15 +35,13 @@
 			</div>
 		</div>
 		
-		<div class="col-xs-5" ng-switch="type">
-			<div ng-switch-when="0">
-				<img class="img-responsive" ng-src={{'imgs/'+imgs}}>
+		<div class="col-xs-5">
+			<div ng-show="type==0||type==1">
+				<img class="img-responsive" ng-src={{imgs}}>
 			</div>
-			<div ng-switch-when="1">
-				<img class="img-responsive" ng-src={{'imgs/'+imgs}}>
-			</div>
-			<div ng-switch-when="3">
-				<video id="player" autoplay="true"></video>				
+			<div ng-show="type==3">
+				<video id="player" autoplay="true"></video>
+				
 			</div>
 		</div>
 	</div>
@@ -55,8 +52,12 @@
 		<div id="score">
 			<br><br><br>
 			<p style='text-align:right'>Score: {{score}}   </p>
-		</div>
 	</div>
+
+		</div>
+	
+	
+
 </div>
 
 <div class="intro" ng-show="!inProgress">	
@@ -67,4 +68,3 @@
 	<br>
 	<a class="btn btn-large btn-block btn-primary" id="startQuiz" ng-click="start()">BEGIN!</a>
 </div>
-
