@@ -1,0 +1,70 @@
+<div class="row quizArea" ng-show="inProgress">
+	<div ng-show="!quizOver">
+		<div class="col-xs-7">
+			<h4 id="question">{{question}}</h4>
+			
+			<div ng-show="type==0">
+				<ul id="options">
+					<li ng-repeat="option in options">
+						<label>
+							<input type="radio" name="answer" value={{option}}>
+					 {{option}}
+						</label>
+					</li>
+				</ul>
+			</div>
+			
+			<div ng-show="type==1">
+				<textarea ng-model="string" class="form-control" rows=2 name="answer" placeholder="IUPAC name"></textarea>
+				<br>
+			</div>
+			
+			<div ng-show="type==3">
+			<br>
+			<br>
+			</div>
+		
+		
+			<button class="btn btn-large btn-block btn-primary" ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+		
+		
+			<div ng-show="!answerMode">
+				<button class="btn btn-large btn-block btn-primary" ng-click="nextQuestion()" class="next-question">Next</button>
+				<span ng-show="correctAns" style="color:green; font-size:30px; font-weight:5px">Correct!</span>
+				<span ng-show="!correctAns" style="color:red; font-size:30px; font-weight:5px">Incorrect :(</span>
+			</div>
+		</div>
+		
+		<div class="col-xs-5">
+			<div ng-show="type==0||type==1">
+				<img class="img-responsive" ng-src={{imgs}}>
+			</div>
+			<div ng-show="type==3">
+				<video id="player" autoplay="true"></video>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div ng-show="quizOver">
+		<h4>Quiz is over</h4>
+		<button class="btn btn-large btn-block btn-primary" ng-click="reset()">Play Again!</button>
+		<div id="score">
+			<br><br><br>
+			<p style='text-align:right'>Score: {{score}}   </p>
+	</div>
+
+		</div>
+	
+	
+
+</div>
+
+<div class="intro" ng-show="!inProgress">	
+	<h4>Stereochemistry</h4>
+	<hr>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+	<br>
+	<br>
+	<a class="btn btn-large btn-block btn-primary" id="startQuiz" ng-click="start()">BEGIN!</a>
+</div>

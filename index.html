@@ -1,0 +1,83 @@
+<!doctype html>
+<html ng-app='quizApp'>
+  <head>
+		<meta charset='utf-8'>
+		<title>IPRO 207 Quiz App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="app.js"></script>		  
+	</head>
+	
+	<body>
+		<div class="container-fluid">
+			<nav class="navbar navbar-default">				
+					<div class="navbar-header">
+						<div class="navbar-header">
+							<a class="navbar-brand text-primary" href="#">IPRO 207 Quiz App</a>
+						</div>
+					</div>
+					<ul class="nav navbar-nav">
+						<li>
+							<p class="navbar-btn">
+								<a class="btn btn-default" data-toggle="modal" data-target="#instructionModal">instructions</a>
+							</p>
+						</li>
+					</ul>
+					<div id="instructionModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Instructions</h4>
+								</div>
+								<div class='modal-body'>
+									<p>Instructions on how to use the webcam utility</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+			</nav>
+			
+			<div class="row">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#nomenclature" data-toggle="tab">Nomenclature</a></li>
+					<li><a href="#stereochemistry" data-toggle="tab">Stereochemistry</a></li>
+					<li><a href="#reactions" data-toggle="tab">Reactions</a></li>
+					<li><a href="#EasyQuiz" data-toggle="tab">Easy Quiz</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="nomenclature">
+						<quiz>
+					</div>
+					<div class="tab-pane fade" id="stereochemistry">
+						<quiz2>
+					</div>
+					<div class="tab-pane fade" id="reactions">
+						<quiz3>
+					</div>
+					<div class="tab-pane fade" id="EasyQuiz">
+						<quiz4>
+					</div>
+					
+				</div>				
+			</div>
+			
+			
+
+			<div class="footer">
+				<br>
+				<br>
+				<br>
+				<hr>
+				<p class="text-center muted">copyright (c) IPRO 207 2016</p>
+			</div>
+		</div>
+	</body>
+</html>
