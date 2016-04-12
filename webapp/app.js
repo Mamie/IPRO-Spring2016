@@ -23,7 +23,7 @@ app.directive('quiz', function(quizFactory) {
 			}
 
 			scope.getQuestion = function() {
-				var q = quizFactory.getQuestion(scope.id);
+				var q = quizFactory.getQuestion(scope.id,scope.score);
 				if(q) {
 					scope.type = q.type;
 					scope.question = q.question;
@@ -32,8 +32,8 @@ app.directive('quiz', function(quizFactory) {
 					scope.imgs = q.imgs;
 					scope.answerMode = true;
 					$('textarea').val('');
-					console.log(scope.id/8*100+'%');
-					$('.progress-bar').css('width', scope.id/8*100+'%');
+					console.log(scope.id/10*100+'%');
+					$('.progress-bar').css('width', scope.id/10*100+'%');
 				} else {
 					scope.quizOver = true;
 				}
@@ -68,6 +68,7 @@ app.directive('quiz', function(quizFactory) {
 						break;
 				}
 				
+				
 
 				scope.answerMode = false;
 			};
@@ -101,7 +102,7 @@ app.directive('quiz2', function(quizFactory2) {
 			}
 
 			scope.getQuestion = function() {
-				var q = quizFactory2.getQuestion(scope.id);
+				var q = quizFactory2.getQuestion(scope.id,scope.score);
 				if(q) {
 					scope.type = q.type;
 					scope.question = q.question;
@@ -110,8 +111,8 @@ app.directive('quiz2', function(quizFactory2) {
 					scope.imgs = q.imgs;
 					scope.answerMode = true;
 					$('textarea').val('');
-					console.log(scope.id/8*100+'%');
-					$('.progress-bar').css('width', scope.id/8*100+'%');
+					console.log(scope.id/10*100+'%');
+					$('.progress-bar').css('width', scope.id/10*100+'%');
 				} else {
 					scope.quizOver = true;
 				}
@@ -171,6 +172,7 @@ app.directive('quiz3', function(quizFactory3) {
 				scope.quizOver = false;
 				scope.inProgress = true;
 				scope.getQuestion();
+				score=0;
 			};
 
 			scope.reset = function() {
@@ -179,8 +181,9 @@ app.directive('quiz3', function(quizFactory3) {
 			}
 
 			scope.getQuestion = function() {
-				var q = quizFactory3.getQuestion(scope.id);
+				var q = quizFactory3.getQuestion(scope.id,scope.score);
 				if(q) {
+					
 					scope.type = q.type;
 					scope.question = q.question;
 					scope.options = q.options;
@@ -259,6 +262,7 @@ app.directive('quiz4', function(quizFactory4) {
 			scope.getQuestion = function() {
 				var q = quizFactory4.getQuestion(scope.id);
 				if(q) {
+					scope.hint=q.hint;
 					scope.type = q.type;
 					scope.question = q.question;
 					scope.options = q.options;
@@ -382,11 +386,69 @@ app.factory('quizFactory', function() {
 			answer: 'CCC(O)(O)OC'
 		}
 	];
-
+var question2 = [
+		
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-1.PNG',
+			answer: '?'
+		},
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-2.PNG',
+			answer: '?'
+		},
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-3.PNG',
+			answer: '?'
+		},
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-4.PNG',
+			answer: '?'
+		},
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-5.PNG',
+			answer: '?'
+		},
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-6.PNG',
+			answer: '?'
+		},
+		{	
+			type: '3', 
+			question: "Build the following molecule",
+			options: [],
+			imgs:'23-7.PNG',
+			answer: 'CCC(O)(O)OC'
+		}
+	];
 	return {
-		getQuestion: function(id) {
+		getQuestion: function(id, score) {
 			if(id < 10 /*questions.length*/) {
-				return questions[Math.floor(Math.random() * questions.length)/*id*/];
+				if(score < 5)
+				{
+					return question2[Math.floor(Math.random() * question2.length)/*id*/];
+
+				} else
+				{
+					return questions[Math.floor(Math.random() * questions.length)/*id*/];
+				}
 			} else {
 				return false;
 			}
@@ -563,13 +625,17 @@ var questions2 = [
 		}
 		];
 	return {
-		getQuestion: function(id) {
+		getQuestion: function(id,score) {
 			if(id < 10 /*questions.length*/) {
-				return questions[Math.floor(Math.random() * questions.length)/*id*/];
-			} else if{
-				return questions[];
-			}
-			else 
+				if(score > 9)
+				{
+					return questions2[Math.floor(Math.random() * questions2.length)/*id*/];
+
+				} else
+				{
+					return questions[Math.floor(Math.random() * questions.length)/*id*/];
+				}
+			}else 
 			{
 				return false;
 			}
@@ -586,34 +652,136 @@ app.factory('quizFactory3', function() {
 			imgs:'10.PNG',
 			answer: 2
 		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-1.PNG',
+			answer: 'CH3CH2CH=CH2'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-2.PNG',
+			answer: 'CH3CH2CH2CH2PCH3'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-3.PNG',
+			answer: 'SCH2CH3'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-4.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-5.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-6.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-7.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'25-8.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
 		{
 			type: '0',
 			question: "Which is the best reaction sequence to use if one wants to accomplish the synthesis shown?",
 			options: ["KMnO4/H2O", "Hg(OAc)2/H2O; ii) NaBH4", " i) KOC(CH3)3; ii) (CH3)3COH", " i) BH3; ii)H2O2/HO"],
 			imgs:'12.PNG',
 			answer: 2
-		},
-		
-		{
-			type: '1',
-			question: "What is the best reaction sequence to use if one wants to accomplish the synthesis shown?",
+		}
+	];
+var questions2 = [
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
 			options: [],
-			imgs:'13.PNG',
-			answer: 'NaSH; DMSO'
+			imgs:'24-1.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
 		},
 		{	
 			type: '3', 
-			question: "What is the result of the reaction sequence shown?",
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'24-2.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'24-3.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'24-4.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
 			options: [],
 			imgs:'11.PNG',
 			answer: 'CCC(CC)C(C)C(C)C(C)C'
-		},
+		}
+		];
+var questions3 = [
 		{
 			type: '1',
 			question: "What is the best reaction sequence to use if one wants to accomplish the synthesis shown?",
 			options: [],
 			imgs: '14.PNG',
 			answer: 'CH3CH2O-Na+ethanol'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'24-6.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{	
+			type: '3', 
+			question: "Build the result of the reaction sequence shown?",
+			options: [],
+			imgs:'24-5.PNG',
+			answer: 'CCC(CC)C(C)C(C)C(C)C'
+		},
+		{
+			type: '1',
+			question: "What is the best reaction sequence to use if one wants to accomplish the synthesis shown?",
+			options: [],
+			imgs:'13.PNG',
+			answer: 'NaSH; DMSO'
 		},
 		{
 			type: '1',
@@ -622,13 +790,7 @@ app.factory('quizFactory3', function() {
 			imgs: '16.PNG',
 			answer: 'CH3CH2CH2CH2OCH3'
 		},
-		{	
-			type: '3', 
-			question: "Build 5-ethyl-2,3,4-trimethylheptane.",
-			options: [],
-			imgs:'15.PNG',
-			answer: 'CCC(CC)C(C)C(C)C(C)C'
-		},
+		
 		{
 			type: '1',
 			question: "What is the best reaction sequence to use if one wants to accomplish the synthesis shown?",
@@ -657,13 +819,22 @@ app.factory('quizFactory3', function() {
 			imgs: '17.PNG',
 			answer: 'CH3CH2OH'
 		}
-	];
-
+		];
 	return {
-		getQuestion: function(id) {
-			
+		getQuestion: function(id,score) {
+			console.log(score);
 			if(id < 10 /*questions.length*/) {
-				return questions[Math.floor(Math.random() * questions.length)/*id*/];
+				if(score <3)
+				{
+					return questions2[Math.floor(Math.random() * questions2.length)/*id*/];
+
+				} else if(score>2&& score<8)
+				{
+					return questions[Math.floor(Math.random() * questions.length)/*id*/];
+				}
+				{
+					return questions3[Math.floor(Math.random() * questions3.length)/*id*/];
+				}
 			} else {
 				return false;
 			}
@@ -679,70 +850,80 @@ app.factory('quizFactory4', function() {
 			question: "Build the molecule that does NOT contain carbon atoms: A) Water B) Propane C) Carbonite ",
 			options: [],
 			imgs:'',
-			answer: ''
+			answer: '',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build a Dihydrogen Monoxide molecule.",
 			options: [],
 			imgs:'',
-			answer: 'DHMO'
+			answer: 'DHMO',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "A Cyclohexane molecule consists of 6 carbons that form a hexagon shape. Build a Cyclopentane molecule.",
 			options: [],
 			imgs:'',
-			answer: 'C1CCCCC1'
+			answer: 'C1CCCCC1',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build the molecule that is an alcohol: A) Ethane B)Ethene C)Ethanol (pictures shown?)",
 			options: [],
 			imgs:'',
-			answer: 'CCC(CC)C(C)C(C)C(C)C'
+			answer: '',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build the molecule that is an alkane: A) Ethane B)Ethene C)Ethanol (pictures shown?)",
 			options: [],
 			imgs:'',
-			answer: 'CCC(CC)C(C)C(C)C(C)C'
+			answer: '',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build a Carbon Dioxide molecule (Assume single bond piece represents double bond)",
 			options: [],
 			imgs:'',
-			answer: 'CO2'
+			answer: 'CO2',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build a Hydrogen Peroxide molecule.",
 			options: [],
 			imgs:'',
-			answer: 'H2O2'
+			answer: 'H2O2',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build an Octane molecule.",
 			options: [],
 			imgs:'',
-			answer: 'C8H18'
+			answer: 'C8H18',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "Build a Hydrogen Molecule.",
 			options: [],
 			imgs:'',
-			answer: 'H'
+			answer: 'H',
+			hint:"hint",
 		},
 		{	
 			type: '3', 
 			question: "2 molecules of H2O were formed by combining 2 molecules of H2 and 1 molecule of X. Build this molecule.",
 			options: [],
 			imgs:'',
-			answer: 'CCC(CC)C(C)C(C)C(C)C'
+			answer: 'CCC(CC)C(C)C(C)C(C)C',
+			hint:"hint",
 		},
 		
 	];
@@ -782,6 +963,7 @@ $('#start').on('click',
  
   navigator.getUserMedia(mediaOptions, success, function(e) {
     console.log(e);
+	
   });
  
   function success(stream){
