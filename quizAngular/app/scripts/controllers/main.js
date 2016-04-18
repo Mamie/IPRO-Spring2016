@@ -102,35 +102,35 @@ function quizFactory() {
 			type: '0',
 			question: 'Select a correct IUPAC name for the structure below.',
 			options: ['2-iodo-4-ethyl-4-methylpentane', '3,3-dimethyl-5-iodohexane', '2-iodo-4,4-dimethylhexane', '2-ethyl-2-methyl-4-iodopentane'],
-			imgs:'1.png',
+			imgs:'1.PNG',
 			answer: 2
 		},
 		{
 			type: '0',
 			question: 'Select a correct IUPAC name for the structure below.',
 			options: ['1-ethyl-1-isopropylhexane', '2-methyl-3-ethyloctane', '3-ethyl-2-methyloctane', '2-methyl-3-pentylpentane'],
-			imgs:'2.png',
+			imgs:'2.PNG',
 			answer: 2
 		},
 		{
 			type: '0',
 			question: 'Select a correct IUPAC name for the structure below.',
 			options: ['2-methyl-3-ethylheptane', '3-butyl-2-methylpentane', '3-ethyl-2-methylheptane', '5-isopropylheptane'],
-			imgs:'3.png',
+			imgs:'3.PNG',
 			answer: 2
 		},
 		{
 			type: '1',
 			question: 'Name the following compound according to the IUPAC system',
 			options: [],
-			imgs:'4.png',
+			imgs:'4.PNG',
 			answer: '2-ethyl-1,1-dimethylcyclopropane'
 		},
 		{
 			type: '1',
 			question: 'Name the following compound according to the IUPAC system',
 			options: [],
-			imgs: '6.png',
+			imgs: '6.PNG',
 			answer: '3-ethyl-2-methylpentane'
 		},
 		{	
@@ -873,12 +873,12 @@ var start = function() {
 
             btnPhoto.addEventListener('click', function() {
                 context.drawImage(video, 0, 0, 250, 180);
-				var data = canvas.toDataURL('image/png', 1.0), array = [];
+				var data = canvas.toDataURL('image/PNG', 1.0), array = [];
 				data = atob(data.split(',')[1]);
 				for (var i=0; i<data.length; i++) {
 					array.push(data.charCodeAt(i));
 				}
-				var file = new Blob([new Uint8Array(array)], {type:'image/png'});
+				var file = new Blob([new Uint8Array(array)], {type:'image/PNG'});
 				var formdata = new FormData();
 				formdata.append('image', file);
 				function post() {
