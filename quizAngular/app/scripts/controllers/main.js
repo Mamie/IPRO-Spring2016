@@ -583,13 +583,6 @@ function quizFactory3() {
 			imgs:'25-7.PNG',
 			answer: 'CCC(CC)C(C)C(C)C(C)C'
 		},
-		{	
-			type: '3', 
-			question: "Build the result of the reaction sequence shown?",
-			options: [],
-			imgs:'25-8.PNG',
-			answer: 'CCC(CC)C(C)C(C)C(C)C'
-		},
 		{
 			type: '0',
 			question: "Which is the best reaction sequence to use if one wants to accomplish the synthesis shown?",

@@ -147,8 +147,14 @@ article {
 
 .progress-bar {
 	background-image: none;
-	background-color: red;
+	background-color: rgb(129, 129, 129);
 }
+
+ol li.list-group-item {
+    list-style: decimal inside;
+	display: list-item;
+}
+
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;

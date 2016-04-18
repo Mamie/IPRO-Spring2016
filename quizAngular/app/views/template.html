@@ -27,8 +27,16 @@
 			
 			<div ng-switch-when="3">
 				<br>
-				Instructions:<br>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Instructions</div>
+    				<ol class="list-group">
+    					<li class="list-group-item">Start playing by clicking <span class="glyphicon glyphicon-off"></span>. The button will be disabled after being activated only once.</li>
+    					<li class="list-group-item">Start the web camera stream by clicking <span class="glyphicon glyphicon-play"></span>.</li>
+    					<li class="list-group-item">Capture a picture and submit the picture to server that can detect the model you built by clicking <span class="glyphicon glyphicon-picture"></span>.</li>
+    					<li class="list-group-item">In case that you want to stop the web cam stream, click <span class="glyphicon glyphicon-stop"></span>.</li>
+    					<li class="list-group-item">Submit the result as usual once you are confident with the result.</li>
+    				</ol>
+                </div>
 				<br>
 			</div>
 		</div>
@@ -72,7 +80,7 @@
 <div class="intro" ng-show="!inProgress">
 	<h3>Nomenclature</h3>
 	<hr>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+	<p>This series of questions will help you review nomenclature of organic molecules. Apart from traditional exercise questions, you will be building several molecules based on their name using the modelling kit.</p>
 	<br>
 	<br>
 	<a class="btn btn-large btn-block btn-default" id="startQuiz" ng-click="start()">Begin!</a>
