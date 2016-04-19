@@ -125,7 +125,7 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 	return ret
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 
@@ -149,10 +149,10 @@ while not quit:
                        			    param1=45,param2=25,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'N','P','H']
-			colorNames = ['Black', 'Red', 'Blue','Purple','White']
-			color = [[34,27,25], [70,25,155], [210,125,75], [165,80,95], [245,175,185]]
-			count = [0,0,0,0,0]
+			atomNames = ['C', 'O', 'N','P','H','C6']
+			colorNames = ['Black', 'Red', 'Blue','Purple','White','Benzene']
+			color = [[34,27,25], [70,25,155], [210,125,75], [165,80,95], [245,175,185],[55,85,80]]
+			count = [0,0,0,0,0,0]
 
 			vertexNames = []
 			graph = []
