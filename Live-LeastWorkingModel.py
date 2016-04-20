@@ -205,6 +205,13 @@ while not quit:
 			smile = DFS(graph, vertexNames)
 			print smile
 			print ''
+		elif chr(key)=='v': # visualization
+			print 'v was pressed'
+			print vertexNames
+			print graph
+			smile = DFS(graph, vertexNames)
+			print smile
+			print ''
 			if smile==None:
 				continue
 			molfile = query.MOL( smile )
