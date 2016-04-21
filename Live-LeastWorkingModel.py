@@ -56,12 +56,10 @@ def detectSingleBond(image, c1, c2):
 	p2 = c2*PERCENT_SKIP + c1*(1-PERCENT_SKIP)
 	direction = p2-p1
 	count=0
-	print 'STARTINGS'
 	for i in range(STEPS):
 		step = direction*i/STEPS
 		test = p1 + step
-		print image[math.floor(test[1])][math.floor(test[0])]
-		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [185,135,135]))<45:
+		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [190,150,155]))<45:
 			count = count+1
 	return count>THRESHOLD
 #End Function detectSingleBond()
@@ -131,7 +129,7 @@ cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 printHelpText()
 
-COUNTER=27
+COUNTER=50
 quit=False
 while not quit:
 	retval,image = cap.read()
@@ -149,9 +147,9 @@ while not quit:
                        			    param1=45,param2=25,minRadius=15,maxRadius=50)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'N','P','H','C6']
-			colorNames = ['Black', 'Red', 'Blue','Purple','White','Benzene']
-			color = [[34,27,25], [70,25,155], [210,125,75], [165,80,95], [245,175,185],[55,85,80]]
+			atomNames = ['C', 'O', 'N','P','H','F']
+			colorNames = ['Black', 'Red', 'Blue','Purple','White','Yellow']
+			color = [[27,25,20], [50,20,160], [220,130,88], [185,100,115], [245,175,185],[90,150,170]]
 			count = [0,0,0,0,0,0]
 
 			vertexNames = []
@@ -191,7 +189,7 @@ while not quit:
 		#End If
 
 		cv2.imshow('Ball And Stick Tracker', cimg)
-		key = cv2.waitKey(200)
+		key = cv2.waitKey(50)
 		if key==-1: continue
 		if chr(key)=='q': 
 			quit=True
