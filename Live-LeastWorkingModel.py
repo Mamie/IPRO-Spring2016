@@ -48,7 +48,7 @@ def nearestNeighbor(colors, pixel):
 
 def detectSingleBond(image, c1, c2):
 	distance = distance2D(c1,c2)
-	if distance>5*c1[2] or distance>5*c2[2]: return False
+	if distance>4*c1[2] or distance>4*c2[2]: return False
 	STEPS =25
 	PERCENT_SKIP=0.3
 	THRESHOLD=0.85
@@ -123,7 +123,7 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 	return ret
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 
@@ -144,7 +144,7 @@ while not quit:
 		cimg = image.copy()
 		img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 		circles = cv2.HoughCircles(img,cv2.cv.CV_HOUGH_GRADIENT,1,30,
-                       			    param1=45,param2=25,minRadius=15,maxRadius=50)
+                       			    param1=45,param2=25,minRadius=15,maxRadius=40)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
 			atomNames = ['C', 'O', 'N','P','H','F']
