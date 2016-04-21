@@ -164,7 +164,7 @@ while not quit:
 				cv2.circle(cimg,(i[0],i[1]),i[2],(0,255,0),2)
 				# draw the center of the circle
 				cv2.circle(cimg,(i[0],i[1]),2,(0,0,255),3)
-				cv2.putText(cimg, colorNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)			
+				cv2.putText(cimg, atomNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)			
 			#End for
 
 			#Mark Connections

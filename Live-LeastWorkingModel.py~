@@ -123,7 +123,7 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 	return ret
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 
