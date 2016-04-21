@@ -48,7 +48,7 @@ def nearestNeighbor(colors, pixel):
 
 def detectSingleBond(image, c1, c2):
 	distance = distance2D(c1,c2)
-	if distance>4*c1[2] or distance>4*c2[2]: return False
+	if distance>4*c1[2] and distance>4*c2[2]: return False
 	STEPS =25
 	PERCENT_SKIP=0.3
 	THRESHOLD=0.85
