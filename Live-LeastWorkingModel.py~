@@ -48,7 +48,7 @@ def nearestNeighbor(colors, pixel):
 
 def detectSingleBond(image, c1, c2):
 	distance = distance2D(c1,c2)
-	if distance>5*c1[2] or distance>5*c2[2]: return False
+	if distance>4*c1[2] or distance>4*c2[2]: return False
 	STEPS =25
 	PERCENT_SKIP=0.3
 	THRESHOLD=0.85
@@ -56,12 +56,10 @@ def detectSingleBond(image, c1, c2):
 	p2 = c2*PERCENT_SKIP + c1*(1-PERCENT_SKIP)
 	direction = p2-p1
 	count=0
-	print 'STARTINGS'
 	for i in range(STEPS):
 		step = direction*i/STEPS
 		test = p1 + step
-		print image[math.floor(test[1])][math.floor(test[0])]
-		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [185,135,135]))<45:
+		if abs(distance3D(image[math.floor(test[1])][math.floor(test[0])], [190,150,155]))<45:
 			count = count+1
 	return count>THRESHOLD
 #End Function detectSingleBond()
@@ -125,13 +123,13 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 	return ret
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
 
 
 printHelpText()
 
-COUNTER=27
+COUNTER=50
 quit=False
 while not quit:
 	retval,image = cap.read()
@@ -146,13 +144,13 @@ while not quit:
 		cimg = image.copy()
 		img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 		circles = cv2.HoughCircles(img,cv2.cv.CV_HOUGH_GRADIENT,1,30,
-                       			    param1=45,param2=25,minRadius=15,maxRadius=50)
+                       			    param1=45,param2=25,minRadius=15,maxRadius=40)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
-			atomNames = ['C', 'O', 'N','P','H','C6']
-			colorNames = ['Black', 'Red', 'Blue','Purple','White','Benzene']
-			color = [[34,27,25], [70,25,155], [210,125,75], [165,80,95], [245,175,185],[55,85,80]]
-			count = [0,0,0,0,0]
+			atomNames = ['C', 'O', 'N','P','H','F']
+			colorNames = ['Black', 'Red', 'Blue','Purple','White','Yellow']
+			color = [[27,25,20], [50,20,160], [220,130,88], [185,100,115], [245,175,185],[90,150,170]]
+			count = [0,0,0,0,0,0]
 
 			vertexNames = []
 			graph = []
@@ -166,7 +164,7 @@ while not quit:
 				cv2.circle(cimg,(i[0],i[1]),i[2],(0,255,0),2)
 				# draw the center of the circle
 				cv2.circle(cimg,(i[0],i[1]),2,(0,0,255),3)
-				cv2.putText(cimg, colorNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)			
+				cv2.putText(cimg, atomNames[color_index], (i[0],i[1]), cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)			
 			#End for
 
 			#Mark Connections
@@ -191,7 +189,7 @@ while not quit:
 		#End If
 
 		cv2.imshow('Ball And Stick Tracker', cimg)
-		key = cv2.waitKey(200)
+		key = cv2.waitKey(50)
 		if key==-1: continue
 		if chr(key)=='q': 
 			quit=True

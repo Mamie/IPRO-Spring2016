@@ -865,7 +865,7 @@ var start = function() {
             });
 
             btnPhoto.addEventListener('click', function() {
-                context.drawImage(video, 0, 0, 250, 180);
+                context.drawImage(video, 0, 0, 640, 480);
 				var data = canvas.toDataURL('image/PNG', 1.0), array = [];
 				data = atob(data.split(',')[1]);
 				for (var i=0; i<data.length; i++) {
