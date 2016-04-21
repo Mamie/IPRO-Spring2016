@@ -126,7 +126,7 @@ def recursiveDFS(graph, vertexNames, seen, cur, parent):
 #End Function recursiveDFS(graph, vertexNames, seen, cur)
 
 cap = cv2.VideoCapture(1)
-cv2.namedWindow('Ball And Stick Tracker',cv2.CV_WINDOW_AUTOSIZE)
+cv2.namedWindow('Ball And Stick Tracker',cv2.WINDOW_AUTOSIZE)
 
 
 printHelpText()
@@ -145,7 +145,7 @@ while not quit:
 		image = cv2.medianBlur(image,3)
 		cimg = image.copy()
 		img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-		circles = cv2.HoughCircles(img,cv2.cv.CV_HOUGH_GRADIENT,1,30,
+		circles = cv2.HoughCircles(img,cv2.HOUGH_GRADIENT,1,30,
                        			    param1=45,param2=25,minRadius=15,maxRadius=40)
 		if circles!=None:
 			circles = np.uint16(np.around(circles))
