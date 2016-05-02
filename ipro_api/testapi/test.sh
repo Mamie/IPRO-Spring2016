@@ -1,2 +1,0 @@
-curl -X POST -F image=@1-bromo-1-methyl-cyclopentane.jpg 'http://localhost:8000/detect/'
-curl -X POST "http://localhost:8000/detect/" -d "url=https://upload.wikimedia.org/wikipedia/commons/c/ca/Proline_model.jpg"
