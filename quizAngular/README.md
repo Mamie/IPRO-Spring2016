@@ -10,3 +10,7 @@ Run `grunt` for building and `grunt serve` for preview.
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+## Deployment
+
+This app is deployed by Heroku at this [url](https://ipro207quizapp.herokuapp.com/#/). 
